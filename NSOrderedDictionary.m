@@ -16,32 +16,32 @@
 #pragma mark - Creation
 
 + (id)orderedDictionary{
-    return [[NSOrderedDictionary alloc] init];
+    return [NSOrderedDictionary.alloc init];
 }
 
 + (id)orderedDictionaryWithOrderedDictionary:(NSOrderedDictionary *)orderedDictionary
 {
-    return [[NSOrderedDictionary alloc] initWithOrderedDictionary:orderedDictionary];
+    return [NSOrderedDictionary.alloc initWithOrderedDictionary:orderedDictionary];
 }
 
 + (id)orderedDictionaryWithContentsOfFile:(NSString *)path
 {
-    return [[NSOrderedDictionary alloc] initWithContentsOfFile:path];
+    return [NSOrderedDictionary.alloc initWithContentsOfFile:path];
 }
 
 + (id)orderedDictionaryWithContentsOfURL:(NSURL *)URL
 {
-    return [[NSOrderedDictionary alloc] initWithContentsOfURL:URL];
+    return [NSOrderedDictionary.alloc initWithContentsOfURL:URL];
 }
 
 + (id)orderedDictionaryWithObject:(id)anObject pairedWithKey:(id<NSCopying>)aKey
 {
-    return [[NSOrderedDictionary alloc] initWithObjects:[NSArray arrayWithObject:anObject] pairedWithKeys:[NSArray arrayWithObject:aKey]];
+    return [NSOrderedDictionary.alloc initWithObjects:[NSArray arrayWithObject:anObject] pairedWithKeys:[NSArray arrayWithObject:aKey]];
 }
 
 + (id)orderedDictionaryWithDictionary:(NSDictionary *)entrys
 {
-    return [[NSOrderedDictionary alloc] initWithContentsOfDictionary:entrys];
+    return [NSOrderedDictionary.alloc initWithContentsOfDictionary:entrys];
 }
 
 #pragma mark - initialization
@@ -50,9 +50,9 @@
 {
     self = [super init];
     if (self != nil) {
-        keys = [[NSMutableArray alloc] init];
-        objects = [[NSMutableArray alloc] init];
-        pairs = [[NSMutableDictionary alloc] init];
+        keys = [NSMutableArray.alloc init];
+        objects = [NSMutableArray.alloc init];
+        pairs = [NSMutableDictionary.alloc init];
     }
     return self;
 }
@@ -66,9 +66,9 @@
 {
     self = [super init];
     if (self != nil) {
-        keys = [[NSMutableArray alloc] initWithArray:orderedDictionary.allKeys copyItems:flag];
-        objects = [[NSMutableArray alloc] initWithArray:orderedDictionary.allObjects copyItems:flag];
-        pairs = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
+        keys = [NSMutableArray.alloc initWithArray:orderedDictionary.allKeys copyItems:flag];
+        objects = [NSMutableArray.alloc initWithArray:orderedDictionary.allObjects copyItems:flag];
+        pairs = [NSMutableDictionary.alloc initWithObjects:objects forKeys:keys];
     }
     return self;
 }
@@ -89,13 +89,13 @@
 {
     self = [super init];
     if (self != nil) {
-        keys = [[NSMutableArray alloc] initWithArray:entrys.allKeys];
-        objects = [[NSMutableArray alloc] init];
+        keys = [NSMutableArray.alloc initWithArray:entrys.allKeys];
+        objects = [NSMutableArray.alloc init];
         //Must loop through all keys, since order from NSDictionary is not defined.
         for (id key in keys) {
             [objects addObject:[entrys objectForKey:key]];
         }
-        pairs = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
+        pairs = [NSMutableDictionary.alloc initWithObjects:objects forKeys:keys];
     }
     return self;
 }
@@ -106,9 +106,9 @@
     NSAssert([[NSSet setWithArray:orderedKeys] count] == orderedKeys.count, @"There are duplicate keys on initialization");
     self = [super init];
     if (self != nil) {
-        keys = [[NSMutableArray alloc] initWithArray:orderedKeys];
-        objects = [[NSMutableArray alloc] initWithArray:orderedObjects];
-        pairs = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
+        keys = [NSMutableArray.alloc initWithArray:orderedKeys];
+        objects = [NSMutableArray.alloc initWithArray:orderedObjects];
+        pairs = [NSMutableDictionary.alloc initWithObjects:objects forKeys:keys];
     }
     return self;
 }
@@ -180,7 +180,7 @@
 
 - (NSOrderedDictionary *)entrysAtIndexes:(NSIndexSet *)indexes
 {
-    return [[NSOrderedDictionary alloc] initWithObjects:[objects objectsAtIndexes:indexes] pairedWithKeys:[keys objectsAtIndexes:indexes]];
+    return [NSOrderedDictionary.alloc initWithObjects:[objects objectsAtIndexes:indexes] pairedWithKeys:[keys objectsAtIndexes:indexes]];
 }
 
 - (NSDictionary *)unorderedEntrysAtIndexes:(NSIndexSet *)indexes
@@ -227,7 +227,7 @@
 
 - (NSEnumerator *)entryEnumerator
 {
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    NSMutableArray *temp = [NSMutableArray.alloc init];
     for (int i = 0; i < keys.count; i++) {
         [temp addObject:[self entryAtIndex:i]];
     }
@@ -246,7 +246,7 @@
 
 - (NSEnumerator *)reverseEntryEnumerator
 {
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    NSMutableArray *temp = [NSMutableArray.alloc init];
     for (int i = keys.count - 1; i >= 0; i++) {
         [temp addObject:[self entryAtIndex:i]];
     }
@@ -486,17 +486,17 @@
 
 - (NSOrderedDictionary *)orderedDictionaryByAddingObject:(id)object pairedWithKey:(id<NSCopying>)aKey
 {
-    return [[NSOrderedDictionary alloc] initWithObjects:[objects arrayByAddingObject:object] pairedWithKeys:[keys arrayByAddingObject:aKey]];
+    return [NSOrderedDictionary.alloc initWithObjects:[objects arrayByAddingObject:object] pairedWithKeys:[keys arrayByAddingObject:aKey]];
 }
 
 - (NSOrderedDictionary *)orderedDictionaryByAddingEntry:(NSDictionary *)entry
 {
-    return [[NSOrderedDictionary alloc] initWithObjects:[objects arrayByAddingObject:[entry.allValues objectAtIndex:0]] pairedWithKeys:[keys arrayByAddingObject:[entry.allKeys objectAtIndex:0]]];
+    return [NSOrderedDictionary.alloc initWithObjects:[objects arrayByAddingObject:[entry.allValues objectAtIndex:0]] pairedWithKeys:[keys arrayByAddingObject:[entry.allKeys objectAtIndex:0]]];
 }
 
 - (NSOrderedDictionary *)orderedDictionaryByAddingObjects:(NSArray *)orderedObjects pairedWithKeys:(NSArray *)orderedKeys
 {
-    return [[NSOrderedDictionary alloc] initWithObjects:[objects arrayByAddingObjectsFromArray:orderedObjects] pairedWithKeys:[keys arrayByAddingObjectsFromArray:orderedKeys]];
+    return [NSOrderedDictionary.alloc initWithObjects:[objects arrayByAddingObjectsFromArray:orderedObjects] pairedWithKeys:[keys arrayByAddingObjectsFromArray:orderedKeys]];
 }
 
 - (NSOrderedDictionary *)filteredOrderDictionarysUsingPredicateForObjects:(NSPredicate *)predicate
@@ -504,7 +504,7 @@
     NSArray *tempObj = [objects filteredArrayUsingPredicate:predicate];
     int i = 0;
     int j = 0;
-    NSMutableArray *tempKey = [[NSMutableArray alloc] init];
+    NSMutableArray *tempKey = [NSMutableArray.alloc init];
     //Iterate though, since all objects are returned in order, you can just look along, object by object, untill they are equal, and grab the coresponding key.
     while (i < tempObj.count && j < keys.count) {
         if ([[tempObj objectAtIndex:i] isEqual:[objects objectAtIndex:j]]) {
@@ -514,21 +514,21 @@
         }
         j++;
     }
-    return [[NSOrderedDictionary alloc] initWithObjects:tempObj pairedWithKeys:tempKey];
+    return [NSOrderedDictionary.alloc initWithObjects:tempObj pairedWithKeys:tempKey];
 }
 
 - (NSOrderedDictionary *)subOrderedDictionaryWithRange:(NSRange)range
 {
-    return [[NSOrderedDictionary alloc] initWithObjects:[objects subarrayWithRange:range] pairedWithKeys:[keys subarrayWithRange:range]];
+    return [NSOrderedDictionary.alloc initWithObjects:[objects subarrayWithRange:range] pairedWithKeys:[keys subarrayWithRange:range]];
 }
 
 #pragma mark - Sorting
 //Internal functions
 - (NSArray *)keysForSortedObjects:(NSArray *)tempObj
 {
-    NSMutableArray *tempKey = [[NSMutableArray alloc] init];
-    NSMutableArray *testObj = [[NSMutableArray alloc] initWithArray:objects];
-    NSMutableArray *testKey = [[NSMutableArray alloc] initWithArray:keys];
+    NSMutableArray *tempKey = [NSMutableArray.alloc init];
+    NSMutableArray *testObj = [NSMutableArray.alloc initWithArray:objects];
+    NSMutableArray *testKey = [NSMutableArray.alloc initWithArray:keys];
     //Loop through and find first identical object, and  add that key to the array. then delete that pair from the testers so they are not used again. (That way if there is an identical object with a diffrent key, it will get used.)
     while (testObj.count > 0) {
         NSInteger index = [testObj indexOfObjectIdenticalTo:[tempObj objectAtIndex:(tempObj.count - testObj.count)]];
@@ -541,7 +541,7 @@
 
 - (NSArray *)objectsForSortedKeys:(NSArray *)tempKey
 {
-    NSMutableArray *tempObj = [[NSMutableArray alloc] init];
+    NSMutableArray *tempObj = [NSMutableArray.alloc init];
     for (id key in tempKey) {
         [tempObj addObject:[pairs objectForKey:key]];
     }
@@ -562,80 +562,87 @@
 - (NSOrderedDictionary *)sortedByObjectsUsingFunction:(NSInteger (*)(__strong id, __strong id, void *))comparator context:(void *)context
 {
     NSArray *tempObj = [objects sortedArrayUsingFunction:comparator context:context];
-    return [[NSOrderedDictionary alloc] initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
+    return [NSOrderedDictionary.alloc initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
 }
 
 - (NSOrderedDictionary *)sortedByKeysUsingFunction:(NSInteger (*)(__strong id<NSCopying>, __strong id<NSCopying>, void *))comparator context:(void *)context
 {
     NSArray *tempKey = [keys sortedArrayUsingFunction:comparator context:context];
-    return [[NSOrderedDictionary alloc] initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
+    return [NSOrderedDictionary.alloc initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
 }
 
 - (NSOrderedDictionary *)sortedByObjectsUsingFunction:(NSInteger (*)(__strong id, __strong id, void *))comparator context:(void *)context hint:(NSData *)hint
 {
     NSArray *tempObj = [objects sortedArrayUsingFunction:comparator context:context hint:hint];
-    return [[NSOrderedDictionary alloc] initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
+    return [NSOrderedDictionary.alloc initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
 }
 
 - (NSOrderedDictionary *)sortedByKeysUsingFunction:(NSInteger (*)(__strong id<NSCopying>, __strong id<NSCopying>, void *))comparator context:(void *)context hint:(NSData *)hint
 {
     NSArray *tempKey = [keys sortedArrayUsingFunction:comparator context:context hint:hint];
-    return [[NSOrderedDictionary alloc] initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
+    return [NSOrderedDictionary.alloc initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
 }
 
 - (NSOrderedDictionary *)sortedByObjectsUsingDescriptors:(NSArray *)descriptors
 {
     NSArray *tempObj = [objects sortedArrayUsingDescriptors:descriptors];
-    return [[NSOrderedDictionary alloc] initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
+    return [NSOrderedDictionary.alloc initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
 }
 
 - (NSOrderedDictionary *)sortedByKeysUsingDescriptors:(NSArray *)descriptors
 {
     NSArray *tempKey = [keys sortedArrayUsingDescriptors:descriptors];
-    return [[NSOrderedDictionary alloc] initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
+    return [NSOrderedDictionary.alloc initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
 }
 
 - (NSOrderedDictionary *)sortedByObjectsUsingSelector:(SEL)comparator
 {
     NSArray *tempObj = [objects sortedArrayUsingSelector:comparator];
-    return [[NSOrderedDictionary alloc] initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
+    return [NSOrderedDictionary.alloc initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
 }
 
 - (NSOrderedDictionary *)sortedByKeysUsingSelector:(SEL)comparator
 {
     NSArray *tempKey = [keys sortedArrayUsingSelector:comparator];
-    return [[NSOrderedDictionary alloc] initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
+    return [NSOrderedDictionary.alloc initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
 }
 
 - (NSOrderedDictionary *)sortedByObjectsUsingComparator:(NSComparator)cmptr
 {
     NSArray *tempObj = [objects sortedArrayUsingComparator:cmptr];
-    return [[NSOrderedDictionary alloc] initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
+    return [NSOrderedDictionary.alloc initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];
 }
 
 - (NSOrderedDictionary *)sortedByKeysUsingComparator:(NSComparator)cmptr
 {
     NSArray *tempKey = [keys sortedArrayUsingComparator:cmptr];
-    return [[NSOrderedDictionary alloc] initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
+    return [NSOrderedDictionary.alloc initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
 }
 
 - (NSOrderedDictionary *)sortedByObjectsWithOptions:(NSSortOptions)opts usingComparator:(NSComparator)cmptr
 {
     NSArray *tempObj = [objects sortedArrayWithOptions:opts usingComparator:cmptr];
-    return [[NSOrderedDictionary alloc] initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];    
+    return [NSOrderedDictionary.alloc initWithObjects:tempObj pairedWithKeys:[self keysForSortedObjects:tempObj]];    
 }
 
 - (NSOrderedDictionary *)sortedByKeysWithOptions:(NSSortOptions)opts usingComparator:(NSComparator)cmptr
 {
     NSArray *tempKey = [objects sortedArrayWithOptions:opts usingComparator:cmptr];
-    return [[NSOrderedDictionary alloc] initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
+    return [NSOrderedDictionary.alloc initWithObjects:[self objectsForSortedKeys:tempKey] pairedWithKeys:tempKey];
+}
+
+#pragma mark - Returning
+
+- (NSDictionary *)dictionary
+{
+    return [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 }
 
 #pragma mark - Description
 
 - (NSString *)description
 {
-    NSMutableString *string = [[NSMutableString alloc] init];
+    NSMutableString *string = [NSMutableString.alloc init];
     [string appendString:@"{"];
     for (int i = 0; i < self.count; i++) {
         id key = [keys objectAtIndex:i];
@@ -666,7 +673,7 @@
 
 - (NSString *)descriptionWithLocale:(id)locale
 {
-    NSMutableString *string = [[NSMutableString alloc] init];
+    NSMutableString *string = [NSMutableString.alloc init];
     [string appendString:@"{"];
     for (int i = 0; i < self.count; i++) {
         id key = [keys objectAtIndex:i];
@@ -710,7 +717,7 @@
 
 - (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level
 {
-    NSMutableString *string = [[NSMutableString alloc] init];
+    NSMutableString *string = [NSMutableString.alloc init];
     [string appendString:@"    {"];
     for (int i = 0; i < self.count; i++) {
         id key = [keys objectAtIndex:i];
@@ -833,7 +840,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    return [[NSOrderedDictionary alloc] initWithObjects:[objects copyWithZone:zone] pairedWithKeys:[keys copyWithZone:zone]];
+    return [NSOrderedDictionary.alloc initWithObjects:[objects copyWithZone:zone] pairedWithKeys:[keys copyWithZone:zone]];
 }
 
 - (id)mutableCopy
@@ -843,7 +850,7 @@
 
 - (id)mutableCopyWithZone:(NSZone *)zone
 {
-    return [[NSMutableOrderedDictionary alloc] initWithOrderedDictionary:self];
+    return [NSMutableOrderedDictionary.alloc initWithOrderedDictionary:self];
 }
 
 #pragma mark - NSFastEnumeration
@@ -879,12 +886,12 @@
 
 + (id)orderedDictionaryWithCapacity:(NSUInteger)numEntrys
 {
-    return [[NSMutableOrderedDictionary alloc] initWithCapacity:numEntrys];
+    return [NSMutableOrderedDictionary.alloc initWithCapacity:numEntrys];
 }
 
 - (id)initWithCapacity:(NSUInteger)numEntrys
 {
-    return [[NSMutableOrderedDictionary alloc] initWithObjects:[NSMutableArray arrayWithCapacity:numEntrys] pairedWithKeys:[NSMutableArray arrayWithCapacity:numEntrys]];
+    return [NSMutableOrderedDictionary.alloc initWithObjects:[NSMutableArray arrayWithCapacity:numEntrys] pairedWithKeys:[NSMutableArray arrayWithCapacity:numEntrys]];
 }
 
 #pragma mark - Adding Objects
@@ -1234,9 +1241,9 @@
 //Internal functions
 - (NSArray *)keysForSortedObjects:(NSArray *)tempObj
 {
-    NSMutableArray *tempKey = [[NSMutableArray alloc] init];
-    NSMutableArray *testObj = [[NSMutableArray alloc] initWithArray:objects];
-    NSMutableArray *testKey = [[NSMutableArray alloc] initWithArray:keys];
+    NSMutableArray *tempKey = [NSMutableArray.alloc init];
+    NSMutableArray *testObj = [NSMutableArray.alloc initWithArray:objects];
+    NSMutableArray *testKey = [NSMutableArray.alloc initWithArray:keys];
     //Loop through and find first identical object, and  add that key to the array. then delete that pair from the testers so they are not used again. (That way if there is an identical object with a diffrent key, it will get used.)
     while (testObj.count > 0) {
         NSInteger index = [testObj indexOfObjectIdenticalTo:[tempObj objectAtIndex:(tempObj.count - testObj.count)]];
@@ -1249,7 +1256,7 @@
 
 - (NSArray *)objectsForSortedKeys:(NSArray *)tempKey
 {
-    NSMutableArray *tempObj = [[NSMutableArray alloc] init];
+    NSMutableArray *tempObj = [NSMutableArray.alloc init];
     for (id key in tempKey) {
         [tempObj addObject:[pairs objectForKey:key]];
     }

@@ -246,6 +246,8 @@
 //Returns an orderedDictionary that lists the receiving orderedDictionary's keys in ascending order, as determined by the comparison method specified by a given NSComparator Block.
 - (NSOrderedDictionary *)sortedByKeysWithOptions:(NSSortOptions)opts usingComparator:(NSComparator)cmptr;
 
+/************ Returning ************/
+- (NSDictionary *)dictionary;
 
 /************ Creating a description ************/
 //returns the contents formatted as a property list <NSArray>
