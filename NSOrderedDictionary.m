@@ -1143,7 +1143,7 @@
 - (void)replaceEntryAtIndex:(NSInteger)index withObject:(id)object pairedWithKey:(id<NSCopying>)key
 {
     id oldKey = [keys objectAtIndex:index];
-    [pairs setObject:nil forKey:oldKey];
+    [pairs removeObjectForKey:oldKey];
     [pairs setObject:object forKey:key];
     [keys replaceObjectAtIndex:index withObject:key];
     [objects replaceObjectAtIndex:index withObject:object];
